@@ -16,4 +16,23 @@ describe("Additional substitution() Tests", function () {
     expect(actual).to.be.a("string");
     expect(actual).to.equal(expected);
   });
+
+  it("Should encode with capitols in alphabet", function () {
+    const actual = substitution(
+      "Tacos are great",
+      "ABCDE%GHI*K$MNO)QRST&VWX@Z"
+    );
+    const expected = "TACOS ARE GREAT";
+    expect(actual).to.be.a("string");
+    expect(actual).to.equal(expected);
+  });
+
+  it("Should not allow special characters when encoding", function () {
+    const actual = substitution(
+      "I'm speci@l though!",
+      "ABCDE%GHI*K$MNO)QRST&VWX@Z"
+    );
+    const expected = false;
+    expect(actual).to.equal(expected);
+  });
 });

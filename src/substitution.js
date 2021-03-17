@@ -10,12 +10,19 @@ const substitutionModule = (function () {
       // Error handling alphabet
       !alphabet ||
       alphabet.length !== 26 ||
+      // No duplicate characters allowed in alphabet
       new Set(alphabet).size !== alphabet.length
     ) {
       return false;
     }
+    if (encode) {
+      input = input.toLowerCase();
+      // No special characters in input allowed
+      if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(input)) {
+        return false;
+      }
+    }
     // create dictionary for decoding
-    input = input.toLowerCase();
     const english = "abcdefghijklmnopqrstuvwxyz".split("");
     const polyKey = {};
     english.forEach((letter, index) => (polyKey[letter] = alphabet[index]));
