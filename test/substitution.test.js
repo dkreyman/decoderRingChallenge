@@ -27,6 +27,17 @@ describe("Additional substitution() Tests", function () {
     expect(actual).to.equal(expected);
   });
 
+  it("Should decode with capitols in alphabet", function () {
+    const actual = substitution(
+      "TACOS ARE GREAT",
+      "ABCDE%GHI*K$MNO)QRST&VWX@Z",
+      false
+    );
+    const expected = "tacos are great";
+    expect(actual).to.be.a("string");
+    expect(actual).to.equal(expected);
+  });
+
   it("Should not allow special characters when encoding", function () {
     const actual = substitution(
       "I'm speci@l though!",
